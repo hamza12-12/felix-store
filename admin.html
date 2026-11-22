@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة التحكم | متجر Felix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #070b14;
+      --bg-card: #0f172a;
+      --bg-input: #090e1a;
+      --border-color: rgba(56, 189, 248, 0.2);
+      --border-glow: rgba(0, 240, 255, 0.45);
+      --cyan: #00f0ff;
+      --purple: #8b5cf6;
+      --green: #25d366;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.14), transparent 35%),
+        radial-gradient(circle at 85% 20%, rgba(0, 240, 255, 0.12), transparent 35%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 3rem;
+    }
+
+    /* Login Lock Screen */
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-main);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .login-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      border-radius: 22px;
+      padding: 2rem 1.5rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .login-logo {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 1rem;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: #070b14;
+    }
+
+    .login-box h2 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      margin-bottom: 0.35rem;
+    }
+
+    .login-box p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 11, 20, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      color: #070b14;
+      font-weight: 900;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand h1 {
+      font-size: 1.15rem;
+      font-weight: 900;
+    }
+
+    .nav-btns {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 11px;
+      padding: 0.55rem 0.95rem;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-cyan {
+      background: linear-gradient(135deg, var(--cyan), #38bdf8);
+      color: #070b14;
+    }
+
+    .btn-purple {
+      background: rgba(139, 92, 246, 0.2);
+      color: #ddd6fe;
+      border: 1px solid rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: #04210f;
+    }
+
+    .btn-green:hover {
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-outline {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.16);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 1.5rem auto 0;
+      padding: 0 1.25rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .stat-card span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .stat-card strong {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--cyan);
+    }
+
+    /* Publish Box */
+    .publish-banner {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      border-radius: 18px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .publish-info h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .publish-info p {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    /* Panels / Cards */
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 1.35rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .panel-title {
+      font-size: 1.12rem;
+      font-weight: 900;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.95rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #cbd5e1;
+    }
+
+    input, select, textarea {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.65rem 0.85rem;
+      border-radius: 11px;
+      font-size: 0.92rem;
+      outline: none;
+      transition: 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--cyan);
+    }
+
+    .emoji-picker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .emoji-btn {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      width: 34px;
+      height: 34px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .emoji-btn:hover {
+      border-color: var(--cyan);
+      transform: scale(1.08);
+    }
+
+    /* Product List Items */
+    .product-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      background: rgba(7, 11, 20, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .product-row-main {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .row-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(0, 240, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .row-details h4 {
+      font-size: 0.98rem;
+      font-weight: 800;
+    }
+
+    .row-details p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .row-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .quick-price-box {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--bg-card);
+      border: 1px solid rgba(37, 211, 102, 0.35);
+      border-radius: 10px;
+      padding: 0.25rem 0.55rem;
+    }
+
+    .quick-price-box span {
+      color: var(--green);
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    .quick-price-input {
+      width: 72px;
+      padding: 0.25rem 0.35rem;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-weight: 800;
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    .icon-action {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-action:hover {
+      border-color: var(--cyan);
+    }
+
+    .status-msg {
+      margin-top: 0.75rem;
+      padding: 0.7rem 1rem;
+      border-radius: 11px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    .status-msg.success {
+      display: block;
+      background: rgba(16, 185, 129, 0.16);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
+    }
+
+    .status-msg.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.16);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+
+    .status-msg.loading {
+      display: block;
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      color: var(--cyan);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #10b981;
+      color: #04210f;
+      font-weight: 800;
+      padding: 0.65rem 1.3rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: transform 0.25s ease;
+      z-index: 600;
+      font-size: 0.9rem;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Screen -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <div class="login-logo">F</div>
+      <h2>لوحة تحكم متجر Felix</h2>
+      <p>أدخل رمز الدخول للإدارة (الرمز الافتراضي: <strong>2026</strong>)</p>
+      <input type="password" id="pinInput" placeholder="••••" style="text-align:center; font-size:1.3rem; letter-spacing:4px; margin-bottom:1rem;" onkeydown="if(event.key==='Enter') checkPin()" />
+      <button class="btn btn-cyan" style="width:100%; padding:0.75rem;" onclick="checkPin()">🔓 دخول للوحة التحكم</button>
+      <p id="loginError" style="color:#fca5a5; font-size:0.82rem; margin-top:0.65rem; display:none;">الرمز غير صحيح!</p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-badge">⚙️</div>
+        <div>
+          <h1>إدارة متجر Felix</h1>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <a href="index.html?preview=1" target="_blank" class="btn btn-purple">👁️ معاينة المتجر</a>
+        <a href="index.html" class="btn btn-outline">🏠 الموقع الرئيسي</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span>إجمالي المنتجات</span>
+        <strong id="statTotal">0</strong>
+      </div>
+      <div class="stat-card">
+        <span>🎮 الألعاب</span>
+        <strong id="statGames">0</strong>
+      </div>
+      <div class="stat-card">
+        <span>📱 التطبيقات</span>
+        <strong id="statApps">0</strong>
+      </div>
+      <div class="stat-card">
+        <span>💎 العملات الرقمية</span>
+        <strong id="statCrypto">0</strong>
+      </div>
+    </div>
+
+    <!-- Live Publish Bar -->
+    <div class="publish-banner">
+      <div class="publish-info">
+        <h3>🚀 نشر التعديلات على الموقع المباشر</h3>
+        <p>بعد إضافة أو تعديل الأسعار، اضغط على زر النشر ليراها جميع الزبائن فوراً.</p>
+      </div>
+      <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <button class="btn btn-green" onclick="publishToGitHub()">🚀 نشر التعديلات على GitHub</button>
+        <button class="btn btn-outline" onclick="downloadProductsJson()">📥 تحميل products.json</button>
+      </div>
+      <div id="publishStatus" class="status-msg" style="width:100%;"></div>
+    </div>
+
+    <!-- Add / Edit Product Form -->
+    <div class="panel" id="formPanel">
+      <div class="panel-title">
+        <span id="formHeading">➕ إضافة منتج جديد</span>
+        <button class="btn btn-outline" id="cancelEditBtn" style="display:none;" onclick="resetForm()">✕ إلغاء التعديل</button>
+      </div>
+
+      <input type="hidden" id="editProductId" />
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>اسم المنتج *</label>
+          <input type="text" id="prodName" placeholder="مثال: شدات ببجي موبايل (660 UC)" />
+        </div>
+
+        <div class="form-group">
+          <label>القسم *</label>
+          <select id="prodCategory">
+            <option value="games">🎮 الألعاب</option>
+            <option value="apps">📱 التطبيقات</option>
+            <option value="crypto">💎 العملات الرقمية</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>السعر بالدولار ($) *</label>
+          <input type="number" step="0.01" min="0" id="prodPrice" placeholder="مثال: 9.50" />
+        </div>
+
+        <div class="form-group">
+          <label>الأيقونة (إيموجي)</label>
+          <input type="text" id="prodIcon" value="🎮" />
+          <div class="emoji-picker">
+            <button type="button" class="emoji-btn" onclick="pickEmoji('🎯')">🎯</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('🔥')">🔥</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('💎')">💎</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('🎮')">🎮</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('🧱')">🧱</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('🎵')">🎵</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('✈️')">✈️</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('🎬')">🎬</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('💲')">💲</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('💳')">💳</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('👑')">👑</button>
+            <button type="button" class="emoji-btn" onclick="pickEmoji('⚡')">⚡</button>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>وصف مختصر للمنتج</label>
+          <input type="text" id="prodDesc" placeholder="مثال: شحن فوري بالآيدي خلال 5 دقائق" />
+        </div>
+
+        <div class="form-group full">
+          <label>نص حقل الإدخال للزبون (Placeholder)</label>
+          <input type="text" id="prodPlaceholder" placeholder="مثال: أدخل معرّف اللاعب (Player ID) أو عنوان المحفظة" />
+        </div>
+      </div>
+
+      <div style="margin-top:1.1rem;">
+        <button class="btn btn-cyan" style="width:100%; padding:0.75rem; font-size:0.95rem;" onclick="saveProduct()">
+          💾 حفظ المنتج في القائمة
+        </button>
+      </div>
+    </div>
+
+    <!-- Manage Products List -->
+    <div class="panel">
+      <div class="panel-title">
+        <span>📦 المنتجات الحالية وتعديل الأسعار السريع</span>
+        <input type="text" id="adminSearch" placeholder="بحث سريع..." style="max-width:230px; padding:0.45rem 0.75rem; font-size:0.85rem;" oninput="renderAdminProducts()" />
+      </div>
+
+      <div id="adminProductsList"></div>
+    </div>
+
+    <!-- Store & GitHub Settings -->
+    <div class="panel">
+      <div class="panel-title">
+        <span>🔧 إعدادات المتجر والربط مع GitHub</span>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>اسم المتجر</label>
+          <input type="text" id="cfgStoreName" />
+        </div>
+
+        <div class="form-group">
+          <label>رقم الواتساب (بدون علامة +)</label>
+          <input type="text" id="cfgWhatsapp" dir="ltr" placeholder="9639XXXXXXXX" />
+        </div>
+
+        <div class="form-group">
+          <label>رمز الدخول للوحة التحكم (PIN)</label>
+          <input type="text" id="cfgPin" dir="ltr" placeholder="2026" />
+        </div>
+
+        <div class="form-group">
+          <label>اسم مستخدم GitHub</label>
+          <input type="text" id="ghOwner" dir="ltr" value="hamza12-12" />
+        </div>
+
+        <div class="form-group">
+          <label>اسم المستودع (Repository)</label>
+          <input type="text" id="ghRepo" dir="ltr" value="felix-store" />
+        </div>
+
+        <div class="form-group">
+          <label>رمز GitHub Token (للنشر التلقائي من المتصفح)</label>
+          <input type="password" id="ghToken" dir="ltr" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+        </div>
+      </div>
+
+      <div style="margin-top:1rem; display:flex; gap:0.65rem; flex-wrap:wrap;">
+        <button class="btn btn-purple" onclick="saveSettings()">✅ حفظ الإعدادات</button>
+        <button class="btn btn-outline" onclick="reloadFromLive()">🔄 استعادة البيانات من الموقع المباشر</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast">تم الحفظ!</div>
+
+  <script>
+    const DEFAULT_STORE = {
+  "storeName": "متجر Felix",
+  "whatsappNumber": "963956065280",
+  "products": [
+    {
+      "id": "pubg-60",
+      "name": "شدات ببجي موبايل (60 UC)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "🎯",
+      "iconBg": "rgba(0, 240, 255, 0.14)",
+      "price": 1.0,
+      "unit": "باقة 60 شدة",
+      "desc": "شحن مباشر عن طريق معرّف اللاعب (Player ID) خلال دقائق.",
+      "placeholder": "أدخل معرّف اللاعب (Player ID)"
+    },
+    {
+      "id": "pubg-325",
+      "name": "شدات ببجي موبايل (325 UC)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "🔥",
+      "iconBg": "rgba(245, 158, 11, 0.16)",
+      "price": 5.0,
+      "unit": "باقة 325 شدة",
+      "desc": "باقة الرويال باس السريعة بالآيدي العالمي.",
+      "placeholder": "أدخل معرّف اللاعب (Player ID)"
+    },
+    {
+      "id": "freefire-100",
+      "name": "جواهر فري فاير (100 جوهرة)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "💎",
+      "iconBg": "rgba(56, 189, 248, 0.16)",
+      "price": 1.1,
+      "unit": "باقة 100 جوهرة",
+      "desc": "شحن جواهر Free Fire بالآيدي فوراً بدون الحاجة لكلمة مرور.",
+      "placeholder": "أدخل ID حساب فري فاير"
+    },
+    {
+      "id": "roblox-400",
+      "name": "روبلوكس (400 Robux)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "🧱",
+      "iconBg": "rgba(239, 68, 68, 0.16)",
+      "price": 5.2,
+      "unit": "بطاقة / شحن 400 روبوكس",
+      "desc": "شحن رصيد Robux لحسابك في لعبة Roblox.",
+      "placeholder": "أدخل اسم المستخدم في Roblox"
+    },
+    {
+      "id": "tiktok-coins",
+      "name": "عملات تيك توك (70 عملة)",
+      "category": "apps",
+      "catLabel": "التطبيقات",
+      "icon": "🎵",
+      "iconBg": "rgba(236, 72, 153, 0.16)",
+      "price": 1.05,
+      "unit": "باقة 70 عملة",
+      "desc": "شحن عملات TikTok لدعم البثوث المباشرة بأرخص الأسعار.",
+      "placeholder": "أدخل يوزر حساب تيك توك (@username)"
+    },
+    {
+      "id": "telegram-premium",
+      "name": "تيليجرام بريميوم (شهر واحد)",
+      "category": "apps",
+      "catLabel": "التطبيقات",
+      "icon": "✈️",
+      "iconBg": "rgba(14, 165, 233, 0.18)",
+      "price": 4.5,
+      "unit": "اشتراك شهري",
+      "desc": "تفعيل Telegram Premium رسمي عبر اسم المستخدم فقط.",
+      "placeholder": "أدخل معرّف تيليجرام (@username)"
+    },
+    {
+      "id": "netflix-4k",
+      "name": "اشتراك نتفليكس 4K (ملف شخصي)",
+      "category": "apps",
+      "catLabel": "التطبيقات",
+      "icon": "🎬",
+      "iconBg": "rgba(220, 38, 38, 0.18)",
+      "price": 3.5,
+      "unit": "اشتراك 30 يوم",
+      "desc": "حساب Netflix Ultra HD مع ضمان كامل طوال مدة الاشتراك.",
+      "placeholder": "أدخل رقمك أو إيميلك لاستلام الحساب"
+    },
+    {
+      "id": "usdt-trc20",
+      "name": "رصيد USDT (شبكة TRC20)",
+      "category": "crypto",
+      "catLabel": "العملات الرقمية",
+      "icon": "💲",
+      "iconBg": "rgba(16, 185, 129, 0.18)",
+      "price": 1.05,
+      "unit": "1 USDT",
+      "desc": "تحويل فوري لعملة USDT على شبكة TRON (TRC20) لأي محفظة.",
+      "placeholder": "أدخل عنوان محفظة USDT TRC20"
+    },
+    {
+      "id": "payeer-usd",
+      "name": "رصيد بنك Payeer (دولار USD)",
+      "category": "crypto",
+      "catLabel": "العملات الرقمية",
+      "icon": "💳",
+      "iconBg": "rgba(59, 130, 246, 0.18)",
+      "price": 1.06,
+      "unit": "1 USD Payeer",
+      "desc": "شحن محفظة بايير بالدولار الأمريكي خلال دقائق.",
+      "placeholder": "أدخل رقم محفظة Payeer (مثال: P1000...)"
+    },
+    {
+      "id": "google-play-10",
+      "name": "بطاقة جوجل بلاي (10$ أمريكي)",
+      "category": "crypto",
+      "catLabel": "العملات الرقمية",
+      "icon": "🛍️",
+      "iconBg": "rgba(139, 92, 246, 0.18)",
+      "price": 10.5,
+      "unit": "كود 10 دولار",
+      "desc": "كود رقمي أصلي لمتجر Google Play الأمريكي.",
+      "placeholder": "ملاحظة إضافية (اختياري)"
+    }
+  ]
+};
+
+    const CAT_MAP = {
+      games: { label: "الألعاب", bg: "rgba(0, 240, 255, 0.14)" },
+      apps: { label: "التطبيقات", bg: "rgba(139, 92, 246, 0.16)" },
+      crypto: { label: "العملات الرقمية", bg: "rgba(16, 185, 129, 0.18)" }
+    };
+
+    let storeData = DEFAULT_STORE;
+
+    function getSavedPin() {
+      return localStorage.getItem("felix_admin_pin") || "2026";
+    }
+
+    function checkPin() {
+      const val = document.getElementById("pinInput").value.trim();
+      if (val === getSavedPin()) {
+        sessionStorage.setItem("felix_unlocked", "1");
+        document.getElementById("loginOverlay").style.display = "none";
+      } else {
+        document.getElementById("loginError").style.display = "block";
+      }
+    }
+
+    if (sessionStorage.getItem("felix_unlocked") === "1") {
+      document.getElementById("loginOverlay").style.display = "none";
+    }
+
+    async function initAdmin() {
+      const localDraft = localStorage.getItem("felix_store_data");
+      if (localDraft) {
+        try {
+          storeData = JSON.parse(localDraft);
+        } catch (e) {}
+      } else {
+        await fetchLiveJson(false);
+      }
+
+      loadSettingsInputs();
+      renderAdminProducts();
+    }
+
+    async function fetchLiveJson(notify = true) {
+      try {
+        const res = await fetch(`./products.json?v=${Date.now()}`, { cache: "no-store" });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data.products)) {
+            storeData = data;
+            saveLocalDraft();
+            loadSettingsInputs();
+            renderAdminProducts();
+            if (notify) showToast("تم تحميل أحدث نسخة من الموقع!");
+          }
+        }
+      } catch (e) {
+        if (notify) showToast("تعذر الاتصال بالموقع المباشر");
+      }
+    }
+
+    function reloadFromLive() {
+      fetchLiveJson(true);
+    }
+
+    function saveLocalDraft() {
+      localStorage.setItem("felix_store_data", JSON.stringify(storeData));
+    }
+
+    function loadSettingsInputs() {
+      document.getElementById("cfgStoreName").value = storeData.storeName || "متجر Felix";
+      document.getElementById("cfgWhatsapp").value = storeData.whatsappNumber || "963956065280";
+      document.getElementById("cfgPin").value = getSavedPin();
+      document.getElementById("ghOwner").value = localStorage.getItem("felix_gh_owner") || "hamza12-12";
+      document.getElementById("ghRepo").value = localStorage.getItem("felix_gh_repo") || "felix-store";
+      document.getElementById("ghToken").value = localStorage.getItem("felix_gh_token") || "";
+    }
+
+    function saveSettings() {
+      const sName = document.getElementById("cfgStoreName").value.trim() || "متجر Felix";
+      const wa = document.getElementById("cfgWhatsapp").value.trim().replace(/[^0-9]/g, "");
+      const pin = document.getElementById("cfgPin").value.trim() || "2026";
+      const owner = document.getElementById("ghOwner").value.trim() || "hamza12-12";
+      const repo = document.getElementById("ghRepo").value.trim() || "felix-store";
+      const token = document.getElementById("ghToken").value.trim();
+
+      if (wa.length < 10) {
+        alert("يرجى إدخال رقم واتساب دولي صحيح (مثال: 963956065280)");
+        return;
+      }
+
+      storeData.storeName = sName;
+      storeData.whatsappNumber = wa;
+      saveLocalDraft();
+
+      localStorage.setItem("felix_admin_pin", pin);
+      localStorage.setItem("felix_gh_owner", owner);
+      localStorage.setItem("felix_gh_repo", repo);
+      if (token) {
+        localStorage.setItem("felix_gh_token", token);
+      } else {
+        localStorage.removeItem("felix_gh_token");
+      }
+
+      showToast("تم حفظ الإعدادات بنجاح!");
+    }
+
+    function pickEmoji(emoji) {
+      document.getElementById("prodIcon").value = emoji;
+    }
+
+    function saveProduct() {
+      const editId = document.getElementById("editProductId").value;
+      const name = document.getElementById("prodName").value.trim();
+      const category = document.getElementById("prodCategory").value;
+      const price = parseFloat(document.getElementById("prodPrice").value);
+      const icon = document.getElementById("prodIcon").value.trim() || "⚡";
+      const desc = document.getElementById("prodDesc").value.trim();
+      const placeholder = document.getElementById("prodPlaceholder").value.trim() || "أدخل معرّف الحساب أو ملاحظة";
+
+      if (!name) {
+        alert("يرجى كتابة اسم المنتج");
+        return;
+      }
+      if (isNaN(price) || price < 0) {
+        alert("يرجى إدخال سعر صحيح");
+        return;
+      }
+
+      const catInfo = CAT_MAP[category] || CAT_MAP.games;
+
+      if (editId) {
+        const idx = storeData.products.findIndex(p => p.id === editId);
+        if (idx !== -1) {
+          storeData.products[idx] = {
+            ...storeData.products[idx],
+            name,
+            category,
+            catLabel: catInfo.label,
+            icon,
+            iconBg: catInfo.bg,
+            price: Number(price.toFixed(2)),
+            desc,
+            placeholder
+          };
+        }
+        showToast("تم تعديل المنتج بنجاح!");
+      } else {
+        const newProd = {
+          id: "prod-" + Date.now(),
+          name,
+          category,
+          catLabel: catInfo.label,
+          icon,
+          iconBg: catInfo.bg,
+          price: Number(price.toFixed(2)),
+          desc,
+          placeholder
+        };
+        storeData.products.unshift(newProd);
+        showToast("تمت إضافة المنتج الجديد!");
+      }
+
+      saveLocalDraft();
+      resetForm();
+      renderAdminProducts();
+    }
+
+    function editProduct(id) {
+      const p = storeData.products.find(item => item.id === id);
+      if (!p) return;
+
+      document.getElementById("editProductId").value = p.id;
+      document.getElementById("prodName").value = p.name;
+      document.getElementById("prodCategory").value = p.category;
+      document.getElementById("prodPrice").value = p.price;
+      document.getElementById("prodIcon").value = p.icon || "⚡";
+      document.getElementById("prodDesc").value = p.desc || "";
+      document.getElementById("prodPlaceholder").value = p.placeholder || "";
+
+      document.getElementById("formHeading").textContent = "✏️ تعديل المنتج: " + p.name;
+      document.getElementById("cancelEditBtn").style.display = "inline-flex";
+      document.getElementById("formPanel").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function resetForm() {
+      document.getElementById("editProductId").value = "";
+      document.getElementById("prodName").value = "";
+      document.getElementById("prodCategory").value = "games";
+      document.getElementById("prodPrice").value = "";
+      document.getElementById("prodIcon").value = "🎮";
+      document.getElementById("prodDesc").value = "";
+      document.getElementById("prodPlaceholder").value = "";
+
+      document.getElementById("formHeading").textContent = "➕ إضافة منتج جديد";
+      document.getElementById("cancelEditBtn").style.display = "none";
+    }
+
+    function updateQuickPrice(id, val) {
+      const parsed = parseFloat(val);
+      if (isNaN(parsed) || parsed < 0) return;
+      const p = storeData.products.find(item => item.id === id);
+      if (p) {
+        p.price = Number(parsed.toFixed(2));
+        saveLocalDraft();
+        showToast(`تم تحديث سعر "${p.name}" إلى $${p.price.toFixed(2)}`);
+      }
+    }
+
+    function moveProduct(index, direction) {
+      const target = index + direction;
+      if (target < 0 || target >= storeData.products.length) return;
+      const temp = storeData.products[index];
+      storeData.products[index] = storeData.products[target];
+      storeData.products[target] = temp;
+      saveLocalDraft();
+      renderAdminProducts();
+    }
+
+    function deleteProduct(id) {
+      const p = storeData.products.find(item => item.id === id);
+      if (!p) return;
+      if (!confirm(`هل أنت متأكد من حذف "${p.name}"؟`)) return;
+      storeData.products = storeData.products.filter(item => item.id !== id);
+      saveLocalDraft();
+      renderAdminProducts();
+      showToast("تم حذف المنتج");
+    }
+
+    function renderAdminProducts() {
+      const list = document.getElementById("adminProductsList");
+      const query = document.getElementById("adminSearch").value.trim().toLowerCase();
+
+      // Update stats
+      document.getElementById("statTotal").textContent = storeData.products.length;
+      document.getElementById("statGames").textContent = storeData.products.filter(p => p.category === "games").length;
+      document.getElementById("statApps").textContent = storeData.products.filter(p => p.category === "apps").length;
+      document.getElementById("statCrypto").textContent = storeData.products.filter(p => p.category === "crypto").length;
+
+      const filtered = storeData.products.filter(p =>
+        p.name.toLowerCase().includes(query) || (p.desc || "").toLowerCase().includes(query)
+      );
+
+      if (filtered.length === 0) {
+        list.innerHTML = `<p style="text-align:center; color:#94a3b8; padding:1.5rem;">لا توجد منتجات حالياً.</p>`;
+        return;
+      }
+
+      list.innerHTML = filtered.map((p) => {
+        const realIndex = storeData.products.findIndex(item => item.id === p.id);
+        const catLabel = (CAT_MAP[p.category] && CAT_MAP[p.category].label) || p.catLabel || "";
+
+        return `
+          <div class="product-row">
+            <div class="product-row-main">
+              <div class="row-icon">${p.icon || "⚡"}</div>
+              <div class="row-details">
+                <h4>${p.name}</h4>
+                <p>${catLabel} • ${p.desc || "بدون وصف"}</p>
+              </div>
+            </div>
+
+            <div class="row-controls">
+              <div class="quick-price-box" title="تعديل السعر مباشرة">
+                <span>$</span>
+                <input
+                  class="quick-price-input"
+                  type="number"
+                  step="0.01"
+                  value="${Number(p.price).toFixed(2)}"
+                  onchange="updateQuickPrice('${p.id}', this.value)"
+                />
+              </div>
+
+              <button class="icon-action" onclick="moveProduct(${realIndex}, -1)" title="تحريك للأعلى">⬆️</button>
+              <button class="icon-action" onclick="moveProduct(${realIndex}, 1)" title="تحريك للأسفل">⬇️</button>
+              <button class="btn btn-purple" style="padding:0.4rem 0.7rem; font-size:0.8rem;" onclick="editProduct('${p.id}')">✏️ تعديل</button>
+              <button class="btn btn-danger" style="padding:0.4rem 0.7rem; font-size:0.8rem;" onclick="deleteProduct('${p.id}')">🗑️</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function utf8ToBase64(str) {
+      const bytes = new TextEncoder().encode(str);
+      let binString = "";
+      for (let i = 0; i < bytes.length; i++) {
+        binString += String.fromCharCode(bytes[i]);
+      }
+      return btoa(binString);
+    }
+
+    async function publishToGitHub() {
+      saveSettings();
+      const owner = document.getElementById("ghOwner").value.trim() || "hamza12-12";
+      const repo = document.getElementById("ghRepo").value.trim() || "felix-store";
+      const token = document.getElementById("ghToken").value.trim();
+      const statusEl = document.getElementById("publishStatus");
+
+      if (!token) {
+        statusEl.className = "status-msg error";
+        statusEl.innerHTML = "⚠️ يرجى وضع رمز <strong>GitHub Token</strong> في قسم (إعدادات المتجر والربط مع GitHub) بالأسفل أولاً، أو استخدم زر <strong>تحميل products.json</strong> لرفعه يدوياً.";
+        document.getElementById("ghToken").focus();
+        return;
+      }
+
+      statusEl.className = "status-msg loading";
+      statusEl.textContent = "⏳ جاري رفع ونشر التعديلات على GitHub...";
+
+      const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/products.json`;
+      const headers = {
+        "Authorization": `Bearer ${token}`,
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json"
+      };
+
+      try {
+        let sha = null;
+        const getRes = await fetch(apiUrl, { headers });
+        if (getRes.ok) {
+          const fileInfo = await getRes.json();
+          sha = fileInfo.sha;
+        } else if (getRes.status !== 404) {
+          throw new Error("تأكد من صحة اسم المستودع ورمز التوكن.");
+        }
+
+        const jsonContent = JSON.stringify(storeData, null, 2);
+        const body = {
+          message: "تحديث المنتجات والأسعار من لوحة التحكم",
+          content: utf8ToBase64(jsonContent),
+          branch: "main"
+        };
+        if (sha) body.sha = sha;
+
+        const putRes = await fetch(apiUrl, {
+          method: "PUT",
+          headers,
+          body: JSON.stringify(body)
+        });
+
+        if (!putRes.ok) {
+          const errData = await putRes.json().catch(() => ({}));
+          throw new Error(errData.message || "فشل النشر على GitHub");
+        }
+
+        statusEl.className = "status-msg success";
+        statusEl.innerHTML = "✅ <strong>تم نشر التعديلات بنجاح!</strong> ستظهر المنتجات والأسعار الجديدة لجميع زبائنك خلال 30 ثانية.";
+      } catch (err) {
+        statusEl.className = "status-msg error";
+        statusEl.textContent = "❌ حدث خطأ أثناء النشر: " + err.message;
+      }
+    }
+
+    function downloadProductsJson() {
+      saveSettings();
+      const jsonStr = JSON.stringify(storeData, null, 2);
+      const blob = new Blob([jsonStr], { type: "application/json;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "products.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("تم تحميل ملف products.json!");
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+
+    initAdmin();
+  </script>
+</body>
+</html>

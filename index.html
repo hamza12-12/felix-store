@@ -11,7 +11,6 @@
     :root {
       --bg-main: #070b14;
       --bg-card: #0f172a;
-      --bg-card-hover: #15203b;
       --bg-input: #090e1a;
       --border-color: rgba(56, 189, 248, 0.18);
       --border-glow: rgba(0, 240, 255, 0.45);
@@ -21,7 +20,6 @@
       --whatsapp-dark: #1ebe5d;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --danger: #ef4444;
     }
 
     * {
@@ -42,7 +40,6 @@
       line-height: 1.6;
     }
 
-    /* Header / Navbar */
     header {
       position: sticky;
       top: 0;
@@ -87,7 +84,6 @@
     .brand-text h1 {
       font-size: 1.35rem;
       font-weight: 900;
-      letter-spacing: 0.5px;
       background: linear-gradient(90deg, #ffffff, var(--cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -106,34 +102,14 @@
       gap: 0.65rem;
     }
 
-    .btn-outline {
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--cyan);
-      border: 1px solid var(--border-color);
-      padding: 0.5rem 0.9rem;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .btn-outline:hover {
-      border-color: var(--cyan);
-      box-shadow: 0 0 14px rgba(0, 240, 255, 0.2);
-    }
-
     .cart-btn {
       position: relative;
       background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(139, 92, 246, 0.2));
       color: #fff;
       border: 1px solid rgba(0, 240, 255, 0.35);
-      padding: 0.5rem 0.95rem;
+      padding: 0.55rem 1rem;
       border-radius: 10px;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
@@ -156,7 +132,22 @@
       border-radius: 999px;
     }
 
-    /* Hero Section */
+    .preview-banner {
+      display: none;
+      background: linear-gradient(90deg, #f59e0b, #d97706);
+      color: #070b14;
+      text-align: center;
+      padding: 0.45rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .preview-banner a {
+      color: #070b14;
+      text-decoration: underline;
+      margin-right: 0.5rem;
+    }
+
     .hero {
       max-width: 1200px;
       margin: 0 auto;
@@ -198,7 +189,6 @@
       font-size: 0.98rem;
     }
 
-    /* Controls: Search & Categories */
     .controls {
       max-width: 1200px;
       margin: 0 auto 1.75rem;
@@ -272,7 +262,6 @@
       box-shadow: 0 4px 18px rgba(0, 240, 255, 0.28);
     }
 
-    /* Products Grid */
     .products-grid {
       max-width: 1200px;
       margin: 0 auto;
@@ -291,8 +280,6 @@
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
-      position: relative;
-      overflow: hidden;
     }
 
     .card:hover {
@@ -388,7 +375,6 @@
       font-size: 1.05rem;
     }
 
-    /* Quantity & Input Controls */
     .qty-row {
       display: flex;
       align-items: center;
@@ -503,7 +489,6 @@
       color: #fff;
     }
 
-    /* Modals (Termux Guide & Cart) */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -558,33 +543,6 @@
       font-size: 1.1rem;
     }
 
-    .code-block {
-      background: #060a12;
-      border: 1px solid rgba(0, 240, 255, 0.25);
-      border-radius: 12px;
-      padding: 0.85rem 1rem;
-      font-family: monospace;
-      direction: ltr;
-      text-align: left;
-      color: #38bdf8;
-      font-size: 0.88rem;
-      margin: 0.65rem 0 1rem;
-      position: relative;
-      line-height: 1.7;
-    }
-
-    .copy-cmd-btn {
-      background: var(--cyan);
-      color: #070b14;
-      border: none;
-      padding: 0.35rem 0.75rem;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 0.78rem;
-      cursor: pointer;
-      margin-top: 0.4rem;
-    }
-
     .cart-item {
       display: flex;
       align-items: center;
@@ -629,6 +587,19 @@
       color: var(--cyan);
     }
 
+    .admin-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #64748b;
+      text-decoration: none;
+      font-size: 0.78rem;
+      transition: 0.2s;
+    }
+
+    .admin-link:hover {
+      color: var(--cyan);
+    }
+
     .toast {
       position: fixed;
       bottom: 20px;
@@ -652,21 +623,21 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <div class="preview-banner" id="previewBanner">
+    👁️ أنت تشاهد المعاينة المحلية من لوحة التحكم. <a href="admin.html">العودة للوحة التحكم للنشر</a>
+  </div>
+
   <header>
     <div class="nav-container">
       <a href="#" class="brand">
         <div class="brand-logo">F</div>
         <div class="brand-text">
-          <h1>متجر Felix</h1>
+          <h1 id="storeTitle">متجر Felix</h1>
           <span>شحن ألعاب • تطبيقات • عملات رقمية</span>
         </div>
       </a>
 
       <div class="nav-actions">
-        <button class="btn-outline" onclick="openModal('termuxModal')">
-          <span>⚡</span> تشغيل Termux
-        </button>
         <button class="cart-btn" onclick="openModal('cartModal')">
           <span>🛒 السلة</span>
           <span class="cart-badge" id="cartCount">0</span>
@@ -675,14 +646,12 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-badge">⚡ شحن فوري وموثوق 24/7 عبر واتساب</div>
     <h2>اشحن ألعابك وتطبيقاتك وعملاتك مع <span>Felix Store</span></h2>
     <p>اختر المنتج وحدد الكمية المطلوبة، وسيتم تحويلك مباشرة إلى واتساب المتجر مع تفاصيل طلبك جاهزة للإرسال.</p>
   </section>
 
-  <!-- Search & Category Tabs -->
   <section class="controls">
     <div class="search-box">
       <span class="search-icon">🔍</span>
@@ -697,38 +666,15 @@
     </div>
   </section>
 
-  <!-- Products Grid -->
-  <main class="products-grid" id="productsGrid"></main>
+  <main class="products-grid" id="productsGrid">
+    <p style="grid-column:1/-1; text-align:center; color:#94a3b8; padding:2rem;">جاري تحميل المنتجات...</p>
+  </main>
 
-  <!-- Footer -->
   <footer>
-    <p>جميع الحقوق محفوظة © 2026 <strong>متجر Felix</strong> | للطلب السريع المباشر: <span dir="ltr">+963 956 065 28</span></p>
+    <p>جميع الحقوق محفوظة © 2026 <strong id="footerStoreName">متجر Felix</strong> | للطلب السريع المباشر: <span dir="ltr" id="footerPhone">+963 956 065 280</span></p>
+    <a href="admin.html" class="admin-link">⚙️ لوحة تحكم الإدارة</a>
   </footer>
 
-  <!-- Termux Modal -->
-  <div class="modal-backdrop" id="termuxModal" onclick="backdropClose(event, 'termuxModal')">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>⚡ طريقة تشغيل المتجر على Termux</h3>
-        <button class="close-btn" onclick="closeModal('termuxModal')">✕</button>
-      </div>
-      <p style="font-size:0.9rem; color:#cbd5e1; margin-bottom:0.5rem;">
-        1. احفظ ملف <strong>index.html</strong> في مجلد التحميلات (Downloads) على هاتفك.<br>
-        2. افتح تطبيق <strong>Termux</strong> والصق الأوامر التالية:
-      </p>
-      <div class="code-block" id="termuxCommands">termux-setup-storage
-cd ~/storage/downloads
-pkg install python -y
-python -m http.server 8080</div>
-      <button class="copy-cmd-btn" onclick="copyTermuxCmd()">📋 نسخ الأوامر</button>
-      <p style="font-size:0.85rem; color:#94a3b8; margin-top:1rem;">
-        3. بعد تشغيل الأمر، افتح متصفح Chrome وادخل إلى الرابط:<br>
-        <strong style="color:#00f0ff;" dir="ltr">http://localhost:8080</strong>
-      </p>
-    </div>
-  </div>
-
-  <!-- Cart Modal -->
   <div class="modal-backdrop" id="cartModal" onclick="backdropClose(event, 'cartModal')">
     <div class="modal">
       <div class="modal-header">
@@ -740,146 +686,199 @@ python -m http.server 8080</div>
     </div>
   </div>
 
-  <!-- Toast Notification -->
   <div class="toast" id="toast">تمت الإضافة إلى السلة!</div>
 
   <script>
-    // رقم واتساب المتجر (بدون علامة +)
-    const WHATSAPP_NUMBER = "963995606528";
+    const FALLBACK_DATA = {
+  "storeName": "متجر Felix",
+  "whatsappNumber": "963956065280",
+  "products": [
+    {
+      "id": "pubg-60",
+      "name": "شدات ببجي موبايل (60 UC)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "🎯",
+      "iconBg": "rgba(0, 240, 255, 0.14)",
+      "price": 1.0,
+      "unit": "باقة 60 شدة",
+      "desc": "شحن مباشر عن طريق معرّف اللاعب (Player ID) خلال دقائق.",
+      "placeholder": "أدخل معرّف اللاعب (Player ID)"
+    },
+    {
+      "id": "pubg-325",
+      "name": "شدات ببجي موبايل (325 UC)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "🔥",
+      "iconBg": "rgba(245, 158, 11, 0.16)",
+      "price": 5.0,
+      "unit": "باقة 325 شدة",
+      "desc": "باقة الرويال باس السريعة بالآيدي العالمي.",
+      "placeholder": "أدخل معرّف اللاعب (Player ID)"
+    },
+    {
+      "id": "freefire-100",
+      "name": "جواهر فري فاير (100 جوهرة)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "💎",
+      "iconBg": "rgba(56, 189, 248, 0.16)",
+      "price": 1.1,
+      "unit": "باقة 100 جوهرة",
+      "desc": "شحن جواهر Free Fire بالآيدي فوراً بدون الحاجة لكلمة مرور.",
+      "placeholder": "أدخل ID حساب فري فاير"
+    },
+    {
+      "id": "roblox-400",
+      "name": "روبلوكس (400 Robux)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "🧱",
+      "iconBg": "rgba(239, 68, 68, 0.16)",
+      "price": 5.2,
+      "unit": "بطاقة / شحن 400 روبوكس",
+      "desc": "شحن رصيد Robux لحسابك في لعبة Roblox.",
+      "placeholder": "أدخل اسم المستخدم في Roblox"
+    },
+    {
+      "id": "tiktok-coins",
+      "name": "عملات تيك توك (70 عملة)",
+      "category": "apps",
+      "catLabel": "التطبيقات",
+      "icon": "🎵",
+      "iconBg": "rgba(236, 72, 153, 0.16)",
+      "price": 1.05,
+      "unit": "باقة 70 عملة",
+      "desc": "شحن عملات TikTok لدعم البثوث المباشرة بأرخص الأسعار.",
+      "placeholder": "أدخل يوزر حساب تيك توك (@username)"
+    },
+    {
+      "id": "telegram-premium",
+      "name": "تيليجرام بريميوم (شهر واحد)",
+      "category": "apps",
+      "catLabel": "التطبيقات",
+      "icon": "✈️",
+      "iconBg": "rgba(14, 165, 233, 0.18)",
+      "price": 4.5,
+      "unit": "اشتراك شهري",
+      "desc": "تفعيل Telegram Premium رسمي عبر اسم المستخدم فقط.",
+      "placeholder": "أدخل معرّف تيليجرام (@username)"
+    },
+    {
+      "id": "netflix-4k",
+      "name": "اشتراك نتفليكس 4K (ملف شخصي)",
+      "category": "apps",
+      "catLabel": "التطبيقات",
+      "icon": "🎬",
+      "iconBg": "rgba(220, 38, 38, 0.18)",
+      "price": 3.5,
+      "unit": "اشتراك 30 يوم",
+      "desc": "حساب Netflix Ultra HD مع ضمان كامل طوال مدة الاشتراك.",
+      "placeholder": "أدخل رقمك أو إيميلك لاستلام الحساب"
+    },
+    {
+      "id": "usdt-trc20",
+      "name": "رصيد USDT (شبكة TRC20)",
+      "category": "crypto",
+      "catLabel": "العملات الرقمية",
+      "icon": "💲",
+      "iconBg": "rgba(16, 185, 129, 0.18)",
+      "price": 1.05,
+      "unit": "1 USDT",
+      "desc": "تحويل فوري لعملة USDT على شبكة TRON (TRC20) لأي محفظة.",
+      "placeholder": "أدخل عنوان محفظة USDT TRC20"
+    },
+    {
+      "id": "payeer-usd",
+      "name": "رصيد بنك Payeer (دولار USD)",
+      "category": "crypto",
+      "catLabel": "العملات الرقمية",
+      "icon": "💳",
+      "iconBg": "rgba(59, 130, 246, 0.18)",
+      "price": 1.06,
+      "unit": "1 USD Payeer",
+      "desc": "شحن محفظة بايير بالدولار الأمريكي خلال دقائق.",
+      "placeholder": "أدخل رقم محفظة Payeer (مثال: P1000...)"
+    },
+    {
+      "id": "google-play-10",
+      "name": "بطاقة جوجل بلاي (10$ أمريكي)",
+      "category": "crypto",
+      "catLabel": "العملات الرقمية",
+      "icon": "🛍️",
+      "iconBg": "rgba(139, 92, 246, 0.18)",
+      "price": 10.5,
+      "unit": "كود 10 دولار",
+      "desc": "كود رقمي أصلي لمتجر Google Play الأمريكي.",
+      "placeholder": "ملاحظة إضافية (اختياري)"
+    }
+  ]
+};
 
-    // قائمة المنتجات
-    const PRODUCTS = [
-      {
-        id: "pubg-60",
-        name: "شدات ببجي موبايل (60 UC)",
-        category: "games",
-        catLabel: "الألعاب",
-        icon: "🎯",
-        iconBg: "rgba(0, 240, 255, 0.14)",
-        price: 1.00,
-        unit: "باقة 60 شدة",
-        desc: "شحن مباشر عن طريق معرّف اللاعب (Player ID) خلال دقائق.",
-        placeholder: "أدخل معرّف اللاعب (Player ID)"
-      },
-      {
-        id: "pubg-325",
-        name: "شدات ببجي موبايل (325 UC)",
-        category: "games",
-        catLabel: "الألعاب",
-        icon: "🔥",
-        iconBg: "rgba(245, 158, 11, 0.16)",
-        price: 5.00,
-        unit: "باقة 325 شدة",
-        desc: "باقة الرويال باس السريعة بالآيدي العالمي.",
-        placeholder: "أدخل معرّف اللاعب (Player ID)"
-      },
-      {
-        id: "freefire-100",
-        name: "جواهر فري فاير (100 جوهرة)",
-        category: "games",
-        catLabel: "الألعاب",
-        icon: "💎",
-        iconBg: "rgba(56, 189, 248, 0.16)",
-        price: 1.10,
-        unit: "باقة 100 جوهرة",
-        desc: "شحن جواهر Free Fire بالآيدي فوراً بدون الحاجة لكلمة مرور.",
-        placeholder: "أدخل ID حساب فري فاير"
-      },
-      {
-        id: "roblox-400",
-        name: "روبلوكس (400 Robux)",
-        category: "games",
-        catLabel: "الألعاب",
-        icon: "🧱",
-        iconBg: "rgba(239, 68, 68, 0.16)",
-        price: 5.20,
-        unit: "بطاقة / شحن 400 روبوكس",
-        desc: "شحن رصيد Robux لحسابك في لعبة Roblox.",
-        placeholder: "أدخل اسم المستخدم في Roblox"
-      },
-      {
-        id: "tiktok-coins",
-        name: "عملات تيك توك (70 عملة)",
-        category: "apps",
-        catLabel: "التطبيقات",
-        icon: "🎵",
-        iconBg: "rgba(236, 72, 153, 0.16)",
-        price: 1.05,
-        unit: "باقة 70 عملة",
-        desc: "شحن عملات TikTok لدعم البثوث المباشرة بأرخص الأسعار.",
-        placeholder: "أدخل يوزر حساب تيك توك (@username)"
-      },
-      {
-        id: "telegram-premium",
-        name: "تيليجرام بريميوم (شهر واحد)",
-        category: "apps",
-        catLabel: "التطبيقات",
-        icon: "✈️",
-        iconBg: "rgba(14, 165, 233, 0.18)",
-        price: 4.50,
-        unit: "اشتراك شهري",
-        desc: "تفعيل Telegram Premium رسمي عبر اسم المستخدم فقط.",
-        placeholder: "أدخل معرّف تيليجرام (@username)"
-      },
-      {
-        id: "netflix-4k",
-        name: "اشتراك نتفليكس 4K (ملف شخصي)",
-        category: "apps",
-        catLabel: "التطبيقات",
-        icon: "🎬",
-        iconBg: "rgba(220, 38, 38, 0.18)",
-        price: 3.50,
-        unit: "اشتراك 30 يوم",
-        desc: "حساب Netflix Ultra HD مع ضمان كامل طوال مدة الاشتراك.",
-        placeholder: "أدخل رقمك أو إيميلك لاستلام الحساب"
-      },
-      {
-        id: "usdt-trc20",
-        name: "رصيد USDT (شبكة TRC20)",
-        category: "crypto",
-        catLabel: "العملات الرقمية",
-        icon: "💲",
-        iconBg: "rgba(16, 185, 129, 0.18)",
-        price: 1.05,
-        unit: "1 USDT",
-        desc: "تحويل فوري لعملة USDT على شبكة TRON (TRC20) لأي محفظة.",
-        placeholder: "أدخل عنوان محفظة USDT TRC20"
-      },
-      {
-        id: "payeer-usd",
-        name: "رصيد بنك Payeer (دولار USD)",
-        category: "crypto",
-        catLabel: "العملات الرقمية",
-        icon: "💳",
-        iconBg: "rgba(59, 130, 246, 0.18)",
-        price: 1.06,
-        unit: "1 USD Payeer",
-        desc: "شحن محفظة بايير بالدولار الأمريكي خلال دقائق.",
-        placeholder: "أدخل رقم محفظة Payeer (مثال: P1000...)"
-      },
-      {
-        id: "google-play-10",
-        name: "بطاقة جوجل بلاي (10$ أمريكي)",
-        category: "crypto",
-        catLabel: "العملات الرقمية",
-        icon: "🛍️",
-        iconBg: "rgba(139, 92, 246, 0.18)",
-        price: 10.50,
-        unit: "كود 10 دولار",
-        desc: "كود رقمي أصلي لمتجر Google Play الأمريكي.",
-        placeholder: "ملاحظة إضافية (اختياري)"
-      }
-    ];
-
+    let STORE_DATA = FALLBACK_DATA;
     let currentCategory = "all";
     let quantities = {};
     let accounts = {};
     let cart = [];
 
-    PRODUCTS.forEach(p => {
-      quantities[p.id] = 1;
-      accounts[p.id] = "";
-    });
+    const CAT_LABELS = {
+      games: "الألعاب",
+      apps: "التطبيقات",
+      crypto: "العملات الرقمية"
+    };
+
+    const CAT_ICONS_BG = {
+      games: "rgba(0, 240, 255, 0.14)",
+      apps: "rgba(139, 92, 246, 0.16)",
+      crypto: "rgba(16, 185, 129, 0.16)"
+    };
+
+    async function initStore() {
+      const params = new URLSearchParams(window.location.search);
+      const isPreview = params.get("preview") === "1";
+
+      if (isPreview) {
+        const localDraft = localStorage.getItem("felix_store_data");
+        if (localDraft) {
+          try {
+            STORE_DATA = JSON.parse(localDraft);
+            document.getElementById("previewBanner").style.display = "block";
+          } catch (e) {}
+        }
+      } else {
+        try {
+          const res = await fetch(`./products.json?v=${Date.now()}`, { cache: "no-store" });
+          if (res.ok) {
+            const remoteData = await res.json();
+            if (remoteData && Array.isArray(remoteData.products)) {
+              STORE_DATA = remoteData;
+            }
+          }
+        } catch (e) {
+          console.log("Using fallback store data.");
+        }
+      }
+
+      applyStoreMeta();
+      STORE_DATA.products.forEach(p => {
+        if (!quantities[p.id]) quantities[p.id] = 1;
+        if (accounts[p.id] === undefined) accounts[p.id] = "";
+      });
+      renderProducts();
+    }
+
+    function applyStoreMeta() {
+      const name = STORE_DATA.storeName || "متجر Felix";
+      const phone = (STORE_DATA.whatsappNumber || "963956065280").replace(/[^0-9]/g, "");
+      document.getElementById("storeTitle").textContent = name;
+      document.getElementById("footerStoreName").textContent = name;
+      document.getElementById("footerPhone").textContent = "+" + phone;
+    }
+
+    function getWhatsAppNumber() {
+      return (STORE_DATA.whatsappNumber || "963956065280").replace(/[^0-9]/g, "");
+    }
 
     function setCategory(cat, btn) {
       currentCategory = cat;
@@ -893,10 +892,10 @@ python -m http.server 8080</div>
       quantities[id] = next;
       const inputEl = document.getElementById(`qty-${id}`);
       const totalEl = document.getElementById(`total-${id}`);
-      const product = PRODUCTS.find(p => p.id === id);
+      const product = STORE_DATA.products.find(p => p.id === id);
       if (inputEl) inputEl.value = next;
       if (totalEl && product) {
-        totalEl.textContent = `$${(product.price * next).toFixed(2)}`;
+        totalEl.textContent = `$${(Number(product.price) * next).toFixed(2)}`;
       }
     }
 
@@ -905,9 +904,9 @@ python -m http.server 8080</div>
       const next = isNaN(parsed) || parsed < 1 ? 1 : parsed;
       quantities[id] = next;
       const totalEl = document.getElementById(`total-${id}`);
-      const product = PRODUCTS.find(p => p.id === id);
+      const product = STORE_DATA.products.find(p => p.id === id);
       if (totalEl && product) {
-        totalEl.textContent = `$${(product.price * next).toFixed(2)}`;
+        totalEl.textContent = `$${(Number(product.price) * next).toFixed(2)}`;
       }
     }
 
@@ -916,37 +915,29 @@ python -m http.server 8080</div>
     }
 
     function orderSingleWhatsApp(id) {
-      const product = PRODUCTS.find(p => p.id === id);
+      const product = STORE_DATA.products.find(p => p.id === id);
       if (!product) return;
 
       const qty = quantities[id] || 1;
-      const total = (product.price * qty).toFixed(2);
+      const total = (Number(product.price) * qty).toFixed(2);
       const acc = (accounts[id] || "").trim();
 
-      let msg = `مرحباً متجر *Felix* 👋
-`;
-      msg += `أرغب بطلب المنتج التالي:
-
-`;
-      msg += `▪ *المنتج:* ${product.name}
-`;
-      msg += `▪ *الكمية:* ${qty}
-`;
-      msg += `▪ *السعر الإجمالي:* $${total}
-`;
+      let msg = `مرحباً *${STORE_DATA.storeName || "متجر Felix"}* 👋\n`;
+      msg += `أرغب بطلب المنتج التالي:\n\n`;
+      msg += `▪ *المنتج:* ${product.name}\n`;
+      msg += `▪ *الكمية:* ${qty}\n`;
+      msg += `▪ *السعر الإجمالي:* $${total}\n`;
       if (acc) {
-        msg += `▪ *المعرّف / المحفظة:* ${acc}
-`;
+        msg += `▪ *المعرّف / المحفظة:* ${acc}\n`;
       }
-      msg += `
-بانتظار تأكيد الطلب وبيانات الدفع 🙏`;
+      msg += `\nبانتظار تأكيد الطلب وبيانات الدفع 🙏`;
 
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+      const url = `https://wa.me/${getWhatsAppNumber()}?text=${encodeURIComponent(msg)}`;
       window.open(url, "_blank");
     }
 
     function addToCart(id) {
-      const product = PRODUCTS.find(p => p.id === id);
+      const product = STORE_DATA.products.find(p => p.id === id);
       if (!product) return;
 
       const qty = quantities[id] || 1;
@@ -959,7 +950,7 @@ python -m http.server 8080</div>
         cart.push({
           id: product.id,
           name: product.name,
-          price: product.price,
+          price: Number(product.price),
           qty: qty,
           account: acc
         });
@@ -983,34 +974,25 @@ python -m http.server 8080</div>
     function checkoutCartWhatsApp() {
       if (cart.length === 0) return;
 
-      let msg = `مرحباً متجر *Felix* 👋
-`;
-      msg += `أرغب بطلب المنتجات التالية من السلة:
-
-`;
+      let msg = `مرحباً *${STORE_DATA.storeName || "متجر Felix"}* 👋\n`;
+      msg += `أرغب بطلب المنتجات التالية من السلة:\n\n`;
 
       let grandTotal = 0;
       cart.forEach((item, idx) => {
         const sub = item.price * item.qty;
         grandTotal += sub;
-        msg += `${idx + 1}. *${item.name}*
-`;
-        msg += `   - الكمية: ${item.qty}
-`;
-        msg += `   - المجموع: $${sub.toFixed(2)}
-`;
+        msg += `${idx + 1}. *${item.name}*\n`;
+        msg += `   - الكمية: ${item.qty}\n`;
+        msg += `   - المجموع: $${sub.toFixed(2)}\n`;
         if (item.account) {
-          msg += `   - المعرّف / المحفظة: ${item.account}
-`;
+          msg += `   - المعرّف / المحفظة: ${item.account}\n`;
         }
       });
 
-      msg += `
-💰 *الإجمالي الكلي:* $${grandTotal.toFixed(2)}
-`;
+      msg += `\n💰 *الإجمالي الكلي:* $${grandTotal.toFixed(2)}\n`;
       msg += `بانتظار تأكيد الطلب 🙏`;
 
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+      const url = `https://wa.me/${getWhatsAppNumber()}?text=${encodeURIComponent(msg)}`;
       window.open(url, "_blank");
     }
 
@@ -1055,9 +1037,9 @@ python -m http.server 8080</div>
       const grid = document.getElementById("productsGrid");
       const search = document.getElementById("searchInput").value.trim().toLowerCase();
 
-      const filtered = PRODUCTS.filter(p => {
+      const filtered = STORE_DATA.products.filter(p => {
         const matchCat = currentCategory === "all" || p.category === currentCategory;
-        const matchSearch = p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search);
+        const matchSearch = p.name.toLowerCase().includes(search) || (p.desc || "").toLowerCase().includes(search);
         return matchCat && matchSearch;
       });
 
@@ -1068,23 +1050,26 @@ python -m http.server 8080</div>
 
       grid.innerHTML = filtered.map(p => {
         const qty = quantities[p.id] || 1;
-        const total = (p.price * qty).toFixed(2);
+        const priceNum = Number(p.price) || 0;
+        const total = (priceNum * qty).toFixed(2);
         const acc = accounts[p.id] || "";
+        const catLabel = p.catLabel || CAT_LABELS[p.category] || "منتج";
+        const iconBg = p.iconBg || CAT_ICONS_BG[p.category] || "rgba(0, 240, 255, 0.14)";
 
         return `
           <article class="card">
             <div>
               <div class="card-header">
-                <div class="product-icon" style="background:${p.iconBg};">${p.icon}</div>
-                <span class="cat-tag ${p.category}">${p.catLabel}</span>
+                <div class="product-icon" style="background:${iconBg};">${p.icon || "⚡"}</div>
+                <span class="cat-tag ${p.category}">${catLabel}</span>
               </div>
               <h3 class="card-title">${p.name}</h3>
-              <p class="card-desc">${p.desc}</p>
+              <p class="card-desc">${p.desc || ""}</p>
             </div>
 
             <div>
               <div class="price-row">
-                <span class="unit-price">السعر: <strong>$${p.price.toFixed(2)}</strong></span>
+                <span class="unit-price">السعر: <strong>$${priceNum.toFixed(2)}</strong></span>
                 <span class="total-price">الإجمالي: <span id="total-${p.id}">$${total}</span></span>
               </div>
 
@@ -1101,7 +1086,7 @@ python -m http.server 8080</div>
                 class="account-input"
                 type="text"
                 value="${acc}"
-                placeholder="${p.placeholder}"
+                placeholder="${p.placeholder || 'أدخل المعرّف أو ملاحظة'}"
                 oninput="setAccount('${p.id}', this.value)"
               />
 
@@ -1132,13 +1117,6 @@ python -m http.server 8080</div>
       if (e.target.id === id) closeModal(id);
     }
 
-    function copyTermuxCmd() {
-      const text = document.getElementById("termuxCommands").innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        showToast("تم نسخ أوامر Termux بنجاح!");
-      });
-    }
-
     function showToast(message) {
       const toast = document.getElementById("toast");
       toast.textContent = message;
@@ -1146,8 +1124,7 @@ python -m http.server 8080</div>
       setTimeout(() => toast.classList.remove("show"), 2500);
     }
 
-    // التشغيل الأولي
-    renderProducts();
+    initStore();
   </script>
 </body>
 </html>

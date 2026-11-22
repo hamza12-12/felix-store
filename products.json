@@ -1,0 +1,126 @@
+{
+  "storeName": "متجر Felix",
+  "whatsappNumber": "963956065280",
+  "products": [
+    {
+      "id": "pubg-60",
+      "name": "شدات ببجي موبايل (60 UC)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "🎯",
+      "iconBg": "rgba(0, 240, 255, 0.14)",
+      "price": 1.0,
+      "unit": "باقة 60 شدة",
+      "desc": "شحن مباشر عن طريق معرّف اللاعب (Player ID) خلال دقائق.",
+      "placeholder": "أدخل معرّف اللاعب (Player ID)"
+    },
+    {
+      "id": "pubg-325",
+      "name": "شدات ببجي موبايل (325 UC)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "🔥",
+      "iconBg": "rgba(245, 158, 11, 0.16)",
+      "price": 5.0,
+      "unit": "باقة 325 شدة",
+      "desc": "باقة الرويال باس السريعة بالآيدي العالمي.",
+      "placeholder": "أدخل معرّف اللاعب (Player ID)"
+    },
+    {
+      "id": "freefire-100",
+      "name": "جواهر فري فاير (100 جوهرة)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "💎",
+      "iconBg": "rgba(56, 189, 248, 0.16)",
+      "price": 1.1,
+      "unit": "باقة 100 جوهرة",
+      "desc": "شحن جواهر Free Fire بالآيدي فوراً بدون الحاجة لكلمة مرور.",
+      "placeholder": "أدخل ID حساب فري فاير"
+    },
+    {
+      "id": "roblox-400",
+      "name": "روبلوكس (400 Robux)",
+      "category": "games",
+      "catLabel": "الألعاب",
+      "icon": "🧱",
+      "iconBg": "rgba(239, 68, 68, 0.16)",
+      "price": 5.2,
+      "unit": "بطاقة / شحن 400 روبوكس",
+      "desc": "شحن رصيد Robux لحسابك في لعبة Roblox.",
+      "placeholder": "أدخل اسم المستخدم في Roblox"
+    },
+    {
+      "id": "tiktok-coins",
+      "name": "عملات تيك توك (70 عملة)",
+      "category": "apps",
+      "catLabel": "التطبيقات",
+      "icon": "🎵",
+      "iconBg": "rgba(236, 72, 153, 0.16)",
+      "price": 1.05,
+      "unit": "باقة 70 عملة",
+      "desc": "شحن عملات TikTok لدعم البثوث المباشرة بأرخص الأسعار.",
+      "placeholder": "أدخل يوزر حساب تيك توك (@username)"
+    },
+    {
+      "id": "telegram-premium",
+      "name": "تيليجرام بريميوم (شهر واحد)",
+      "category": "apps",
+      "catLabel": "التطبيقات",
+      "icon": "✈️",
+      "iconBg": "rgba(14, 165, 233, 0.18)",
+      "price": 4.5,
+      "unit": "اشتراك شهري",
+      "desc": "تفعيل Telegram Premium رسمي عبر اسم المستخدم فقط.",
+      "placeholder": "أدخل معرّف تيليجرام (@username)"
+    },
+    {
+      "id": "netflix-4k",
+      "name": "اشتراك نتفليكس 4K (ملف شخصي)",
+      "category": "apps",
+      "catLabel": "التطبيقات",
+      "icon": "🎬",
+      "iconBg": "rgba(220, 38, 38, 0.18)",
+      "price": 3.5,
+      "unit": "اشتراك 30 يوم",
+      "desc": "حساب Netflix Ultra HD مع ضمان كامل طوال مدة الاشتراك.",
+      "placeholder": "أدخل رقمك أو إيميلك لاستلام الحساب"
+    },
+    {
+      "id": "usdt-trc20",
+      "name": "رصيد USDT (شبكة TRC20)",
+      "category": "crypto",
+      "catLabel": "العملات الرقمية",
+      "icon": "💲",
+      "iconBg": "rgba(16, 185, 129, 0.18)",
+      "price": 1.05,
+      "unit": "1 USDT",
+      "desc": "تحويل فوري لعملة USDT على شبكة TRON (TRC20) لأي محفظة.",
+      "placeholder": "أدخل عنوان محفظة USDT TRC20"
+    },
+    {
+      "id": "payeer-usd",
+      "name": "رصيد بنك Payeer (دولار USD)",
+      "category": "crypto",
+      "catLabel": "العملات الرقمية",
+      "icon": "💳",
+      "iconBg": "rgba(59, 130, 246, 0.18)",
+      "price": 1.06,
+      "unit": "1 USD Payeer",
+      "desc": "شحن محفظة بايير بالدولار الأمريكي خلال دقائق.",
+      "placeholder": "أدخل رقم محفظة Payeer (مثال: P1000...)"
+    },
+    {
+      "id": "google-play-10",
+      "name": "بطاقة جوجل بلاي (10$ أمريكي)",
+      "category": "crypto",
+      "catLabel": "العملات الرقمية",
+      "icon": "🛍️",
+      "iconBg": "rgba(139, 92, 246, 0.18)",
+      "price": 10.5,
+      "unit": "كود 10 دولار",
+      "desc": "كود رقمي أصلي لمتجر Google Play الأمريكي.",
+      "placeholder": "ملاحظة إضافية (اختياري)"
+    }
+  ]
+}
