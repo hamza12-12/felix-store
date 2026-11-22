@@ -9,7 +9,7 @@
       "catLabel": "الألعاب",
       "icon": "🎯",
       "iconBg": "rgba(0, 240, 255, 0.14)",
-      "price": 1.0,
+      "price": 1,
       "unit": "باقة 60 شدة",
       "desc": "شحن مباشر عن طريق معرّف اللاعب (Player ID) خلال دقائق.",
       "placeholder": "أدخل معرّف اللاعب (Player ID)"
@@ -21,7 +21,7 @@
       "catLabel": "الألعاب",
       "icon": "🔥",
       "iconBg": "rgba(245, 158, 11, 0.16)",
-      "price": 5.0,
+      "price": 5,
       "unit": "باقة 325 شدة",
       "desc": "باقة الرويال باس السريعة بالآيدي العالمي.",
       "placeholder": "أدخل معرّف اللاعب (Player ID)"
@@ -69,7 +69,7 @@
       "catLabel": "التطبيقات",
       "icon": "✈️",
       "iconBg": "rgba(14, 165, 233, 0.18)",
-      "price": 4.5,
+      "price": 2.5,
       "unit": "اشتراك شهري",
       "desc": "تفعيل Telegram Premium رسمي عبر اسم المستخدم فقط.",
       "placeholder": "أدخل معرّف تيليجرام (@username)"
