@@ -3,6 +3,17 @@
   "whatsappNumber": "963956065280",
   "products": [
     {
+      "id": "prod-1795352533992",
+      "name": "شام كاش",
+      "category": "crypto",
+      "catLabel": "العملات الرقمية",
+      "icon": "💎",
+      "iconBg": "rgba(16, 185, 129, 0.18)",
+      "price": 5,
+      "desc": "تعبئة شام كاش",
+      "placeholder": "أدخل معرّف الحساب أو ملاحظة"
+    },
+    {
       "id": "pubg-60",
       "name": "شدات ببجي موبايل (60 UC)",
       "category": "games",
