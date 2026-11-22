@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>متجر Felix | شحن الألعاب والتطبيقات والعملات الرقمية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #070b14;
+      --bg-card: #0f172a;
+      --bg-card-hover: #15203b;
+      --bg-input: #090e1a;
+      --border-color: rgba(56, 189, 248, 0.18);
+      --border-glow: rgba(0, 240, 255, 0.45);
+      --cyan: #00f0ff;
+      --purple: #8b5cf6;
+      --whatsapp: #25d366;
+      --whatsapp-dark: #1ebe5d;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --danger: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.14), transparent 35%),
+        radial-gradient(circle at 85% 20%, rgba(0, 240, 255, 0.12), transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(37, 211, 102, 0.08), transparent 40%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* Header / Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 11, 20, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: #070b14;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+    }
+
+    .brand-text h1 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      background: linear-gradient(90deg, #ffffff, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: -4px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .btn-outline {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--cyan);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 14px rgba(0, 240, 255, 0.2);
+    }
+
+    .cart-btn {
+      position: relative;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(139, 92, 246, 0.2));
+      color: #fff;
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      padding: 0.5rem 0.95rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: 0.2s;
+    }
+
+    .cart-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 18px rgba(0, 240, 255, 0.25);
+    }
+
+    .cart-badge {
+      background: var(--whatsapp);
+      color: #052e16;
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 0.05rem 0.45rem;
+      border-radius: 999px;
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.2rem 1.25rem 1.2rem;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      color: var(--cyan);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero h2 {
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 900;
+      margin-bottom: 0.6rem;
+      line-height: 1.25;
+    }
+
+    .hero h2 span {
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 1.5rem;
+      font-size: 0.98rem;
+    }
+
+    /* Controls: Search & Categories */
+    .controls {
+      max-width: 1200px;
+      margin: 0 auto 1.75rem;
+      padding: 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .search-box {
+      position: relative;
+      max-width: 520px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.8rem 2.7rem 0.8rem 1rem;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 18px rgba(0, 240, 255, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 0.95rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tab-btn {
+      background: var(--bg-card);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 0.55rem 1.2rem;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      border-color: rgba(0, 240, 255, 0.4);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      color: #070b14;
+      border-color: transparent;
+      box-shadow: 0 4px 18px rgba(0, 240, 255, 0.28);
+    }
+
+    /* Products Grid */
+    .products-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem 3.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.35rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-glow);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), 0 0 20px rgba(0, 240, 255, 0.1);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .product-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.65rem;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cat-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 8px;
+      background: rgba(139, 92, 246, 0.16);
+      color: #c4b5fd;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .cat-tag.games {
+      background: rgba(0, 240, 255, 0.12);
+      color: var(--cyan);
+      border-color: rgba(0, 240, 255, 0.28);
+    }
+
+    .cat-tag.crypto {
+      background: rgba(37, 211, 102, 0.12);
+      color: #6ee7b7;
+      border-color: rgba(37, 211, 102, 0.3);
+    }
+
+    .card-title {
+      font-size: 1.12rem;
+      font-weight: 800;
+      margin-bottom: 0.25rem;
+      color: #fff;
+    }
+
+    .card-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(7, 11, 20, 0.6);
+      padding: 0.6rem 0.85rem;
+      border-radius: 12px;
+      margin-bottom: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .unit-price {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .unit-price strong {
+      color: var(--cyan);
+      font-size: 0.95rem;
+    }
+
+    .total-price {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .total-price span {
+      color: var(--whatsapp);
+      font-size: 1.05rem;
+    }
+
+    /* Quantity & Input Controls */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .qty-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .qty-box {
+      display: flex;
+      align-items: center;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      width: 34px;
+      height: 34px;
+      background: transparent;
+      border: none;
+      color: var(--cyan);
+      font-size: 1.15rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .qty-btn:hover {
+      background: rgba(0, 240, 255, 0.12);
+    }
+
+    .qty-input {
+      width: 54px;
+      height: 34px;
+      background: transparent;
+      border: none;
+      border-left: 1px solid rgba(255, 255, 255, 0.07);
+      border-right: 1px solid rgba(255, 255, 255, 0.07);
+      color: #fff;
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .account-input {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.6rem 0.8rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      margin-bottom: 0.9rem;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .account-input:focus {
+      border-color: var(--purple);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.55rem;
+    }
+
+    .btn-wa {
+      flex: 1;
+      background: var(--whatsapp);
+      color: #04210f;
+      border: none;
+      padding: 0.7rem 0.9rem;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: 0.2s;
+    }
+
+    .btn-wa:hover {
+      background: var(--whatsapp-dark);
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-add-cart {
+      background: rgba(139, 92, 246, 0.18);
+      color: #ddd6fe;
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      padding: 0.7rem 0.85rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-add-cart:hover {
+      background: rgba(139, 92, 246, 0.32);
+      color: #fff;
+    }
+
+    /* Modals (Termux Guide & Cart) */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 14, 0.82);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 200;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background: #0f172a;
+      border: 1px solid var(--border-glow);
+      border-radius: 20px;
+      max-width: 520px;
+      width: 100%;
+      padding: 1.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      max-height: 88vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--cyan);
+    }
+
+    .close-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .code-block {
+      background: #060a12;
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      font-family: monospace;
+      direction: ltr;
+      text-align: left;
+      color: #38bdf8;
+      font-size: 0.88rem;
+      margin: 0.65rem 0 1rem;
+      position: relative;
+      line-height: 1.7;
+    }
+
+    .copy-cmd-btn {
+      background: var(--cyan);
+      color: #070b14;
+      border: none;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.78rem;
+      cursor: pointer;
+      margin-top: 0.4rem;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: rgba(7, 11, 20, 0.7);
+      padding: 0.75rem;
+      border-radius: 12px;
+      margin-bottom: 0.65rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .cart-item-info h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .cart-item-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .remove-item {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.78rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 1.5rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer strong {
+      color: var(--cyan);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #10b981;
+      color: #04210f;
+      font-weight: 800;
+      padding: 0.65rem 1.3rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: transform 0.25s ease;
+      z-index: 300;
+      font-size: 0.9rem;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-logo">F</div>
+        <div class="brand-text">
+          <h1>متجر Felix</h1>
+          <span>شحن ألعاب • تطبيقات • عملات رقمية</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <button class="btn-outline" onclick="openModal('termuxModal')">
+          <span>⚡</span> تشغيل Termux
+        </button>
+        <button class="cart-btn" onclick="openModal('cartModal')">
+          <span>🛒 السلة</span>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">⚡ شحن فوري وموثوق 24/7 عبر واتساب</div>
+    <h2>اشحن ألعابك وتطبيقاتك وعملاتك مع <span>Felix Store</span></h2>
+    <p>اختر المنتج وحدد الكمية المطلوبة، وسيتم تحويلك مباشرة إلى واتساب المتجر مع تفاصيل طلبك جاهزة للإرسال.</p>
+  </section>
+
+  <!-- Search & Category Tabs -->
+  <section class="controls">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث عن لعبة، تطبيق، أو عملة رقمية..." oninput="renderProducts()" />
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-cat="all" onclick="setCategory('all', this)">الكل</button>
+      <button class="tab-btn" data-cat="games" onclick="setCategory('games', this)">🎮 الألعاب</button>
+      <button class="tab-btn" data-cat="apps" onclick="setCategory('apps', this)">📱 التطبيقات</button>
+      <button class="tab-btn" data-cat="crypto" onclick="setCategory('crypto', this)">💎 العملات الرقمية</button>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <main class="products-grid" id="productsGrid"></main>
+
+  <!-- Footer -->
+  <footer>
+    <p>جميع الحقوق محفوظة © 2026 <strong>متجر Felix</strong> | للطلب السريع المباشر: <span dir="ltr">+963 956 065 28</span></p>
+  </footer>
+
+  <!-- Termux Modal -->
+  <div class="modal-backdrop" id="termuxModal" onclick="backdropClose(event, 'termuxModal')">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>⚡ طريقة تشغيل المتجر على Termux</h3>
+        <button class="close-btn" onclick="closeModal('termuxModal')">✕</button>
+      </div>
+      <p style="font-size:0.9rem; color:#cbd5e1; margin-bottom:0.5rem;">
+        1. احفظ ملف <strong>index.html</strong> في مجلد التحميلات (Downloads) على هاتفك.<br>
+        2. افتح تطبيق <strong>Termux</strong> والصق الأوامر التالية:
+      </p>
+      <div class="code-block" id="termuxCommands">termux-setup-storage
+cd ~/storage/downloads
+pkg install python -y
+python -m http.server 8080</div>
+      <button class="copy-cmd-btn" onclick="copyTermuxCmd()">📋 نسخ الأوامر</button>
+      <p style="font-size:0.85rem; color:#94a3b8; margin-top:1rem;">
+        3. بعد تشغيل الأمر، افتح متصفح Chrome وادخل إلى الرابط:<br>
+        <strong style="color:#00f0ff;" dir="ltr">http://localhost:8080</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- Cart Modal -->
+  <div class="modal-backdrop" id="cartModal" onclick="backdropClose(event, 'cartModal')">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>🛒 سلة الطلبات</h3>
+        <button class="close-btn" onclick="closeModal('cartModal')">✕</button>
+      </div>
+      <div id="cartItemsContainer"></div>
+      <div id="cartFooter" style="margin-top:1rem; border-top:1px solid rgba(255,255,255,0.08); padding-top:1rem;"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">تمت الإضافة إلى السلة!</div>
+
+  <script>
+    // رقم واتساب المتجر (بدون علامة +)
+    const WHATSAPP_NUMBER = "963995606528";
+
+    // قائمة المنتجات
+    const PRODUCTS = [
+      {
+        id: "pubg-60",
+        name: "شدات ببجي موبايل (60 UC)",
+        category: "games",
+        catLabel: "الألعاب",
+        icon: "🎯",
+        iconBg: "rgba(0, 240, 255, 0.14)",
+        price: 1.00,
+        unit: "باقة 60 شدة",
+        desc: "شحن مباشر عن طريق معرّف اللاعب (Player ID) خلال دقائق.",
+        placeholder: "أدخل معرّف اللاعب (Player ID)"
+      },
+      {
+        id: "pubg-325",
+        name: "شدات ببجي موبايل (325 UC)",
+        category: "games",
+        catLabel: "الألعاب",
+        icon: "🔥",
+        iconBg: "rgba(245, 158, 11, 0.16)",
+        price: 5.00,
+        unit: "باقة 325 شدة",
+        desc: "باقة الرويال باس السريعة بالآيدي العالمي.",
+        placeholder: "أدخل معرّف اللاعب (Player ID)"
+      },
+      {
+        id: "freefire-100",
+        name: "جواهر فري فاير (100 جوهرة)",
+        category: "games",
+        catLabel: "الألعاب",
+        icon: "💎",
+        iconBg: "rgba(56, 189, 248, 0.16)",
+        price: 1.10,
+        unit: "باقة 100 جوهرة",
+        desc: "شحن جواهر Free Fire بالآيدي فوراً بدون الحاجة لكلمة مرور.",
+        placeholder: "أدخل ID حساب فري فاير"
+      },
+      {
+        id: "roblox-400",
+        name: "روبلوكس (400 Robux)",
+        category: "games",
+        catLabel: "الألعاب",
+        icon: "🧱",
+        iconBg: "rgba(239, 68, 68, 0.16)",
+        price: 5.20,
+        unit: "بطاقة / شحن 400 روبوكس",
+        desc: "شحن رصيد Robux لحسابك في لعبة Roblox.",
+        placeholder: "أدخل اسم المستخدم في Roblox"
+      },
+      {
+        id: "tiktok-coins",
+        name: "عملات تيك توك (70 عملة)",
+        category: "apps",
+        catLabel: "التطبيقات",
+        icon: "🎵",
+        iconBg: "rgba(236, 72, 153, 0.16)",
+        price: 1.05,
+        unit: "باقة 70 عملة",
+        desc: "شحن عملات TikTok لدعم البثوث المباشرة بأرخص الأسعار.",
+        placeholder: "أدخل يوزر حساب تيك توك (@username)"
+      },
+      {
+        id: "telegram-premium",
+        name: "تيليجرام بريميوم (شهر واحد)",
+        category: "apps",
+        catLabel: "التطبيقات",
+        icon: "✈️",
+        iconBg: "rgba(14, 165, 233, 0.18)",
+        price: 4.50,
+        unit: "اشتراك شهري",
+        desc: "تفعيل Telegram Premium رسمي عبر اسم المستخدم فقط.",
+        placeholder: "أدخل معرّف تيليجرام (@username)"
+      },
+      {
+        id: "netflix-4k",
+        name: "اشتراك نتفليكس 4K (ملف شخصي)",
+        category: "apps",
+        catLabel: "التطبيقات",
+        icon: "🎬",
+        iconBg: "rgba(220, 38, 38, 0.18)",
+        price: 3.50,
+        unit: "اشتراك 30 يوم",
+        desc: "حساب Netflix Ultra HD مع ضمان كامل طوال مدة الاشتراك.",
+        placeholder: "أدخل رقمك أو إيميلك لاستلام الحساب"
+      },
+      {
+        id: "usdt-trc20",
+        name: "رصيد USDT (شبكة TRC20)",
+        category: "crypto",
+        catLabel: "العملات الرقمية",
+        icon: "💲",
+        iconBg: "rgba(16, 185, 129, 0.18)",
+        price: 1.05,
+        unit: "1 USDT",
+        desc: "تحويل فوري لعملة USDT على شبكة TRON (TRC20) لأي محفظة.",
+        placeholder: "أدخل عنوان محفظة USDT TRC20"
+      },
+      {
+        id: "payeer-usd",
+        name: "رصيد بنك Payeer (دولار USD)",
+        category: "crypto",
+        catLabel: "العملات الرقمية",
+        icon: "💳",
+        iconBg: "rgba(59, 130, 246, 0.18)",
+        price: 1.06,
+        unit: "1 USD Payeer",
+        desc: "شحن محفظة بايير بالدولار الأمريكي خلال دقائق.",
+        placeholder: "أدخل رقم محفظة Payeer (مثال: P1000...)"
+      },
+      {
+        id: "google-play-10",
+        name: "بطاقة جوجل بلاي (10$ أمريكي)",
+        category: "crypto",
+        catLabel: "العملات الرقمية",
+        icon: "🛍️",
+        iconBg: "rgba(139, 92, 246, 0.18)",
+        price: 10.50,
+        unit: "كود 10 دولار",
+        desc: "كود رقمي أصلي لمتجر Google Play الأمريكي.",
+        placeholder: "ملاحظة إضافية (اختياري)"
+      }
+    ];
+
+    let currentCategory = "all";
+    let quantities = {};
+    let accounts = {};
+    let cart = [];
+
+    PRODUCTS.forEach(p => {
+      quantities[p.id] = 1;
+      accounts[p.id] = "";
+    });
+
+    function setCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderProducts();
+    }
+
+    function updateQty(id, delta) {
+      const next = Math.max(1, (quantities[id] || 1) + delta);
+      quantities[id] = next;
+      const inputEl = document.getElementById(`qty-${id}`);
+      const totalEl = document.getElementById(`total-${id}`);
+      const product = PRODUCTS.find(p => p.id === id);
+      if (inputEl) inputEl.value = next;
+      if (totalEl && product) {
+        totalEl.textContent = `$${(product.price * next).toFixed(2)}`;
+      }
+    }
+
+    function setQtyDirect(id, val) {
+      const parsed = parseInt(val, 10);
+      const next = isNaN(parsed) || parsed < 1 ? 1 : parsed;
+      quantities[id] = next;
+      const totalEl = document.getElementById(`total-${id}`);
+      const product = PRODUCTS.find(p => p.id === id);
+      if (totalEl && product) {
+        totalEl.textContent = `$${(product.price * next).toFixed(2)}`;
+      }
+    }
+
+    function setAccount(id, val) {
+      accounts[id] = val;
+    }
+
+    function orderSingleWhatsApp(id) {
+      const product = PRODUCTS.find(p => p.id === id);
+      if (!product) return;
+
+      const qty = quantities[id] || 1;
+      const total = (product.price * qty).toFixed(2);
+      const acc = (accounts[id] || "").trim();
+
+      let msg = `مرحباً متجر *Felix* 👋
+`;
+      msg += `أرغب بطلب المنتج التالي:
+
+`;
+      msg += `▪ *المنتج:* ${product.name}
+`;
+      msg += `▪ *الكمية:* ${qty}
+`;
+      msg += `▪ *السعر الإجمالي:* $${total}
+`;
+      if (acc) {
+        msg += `▪ *المعرّف / المحفظة:* ${acc}
+`;
+      }
+      msg += `
+بانتظار تأكيد الطلب وبيانات الدفع 🙏`;
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+      window.open(url, "_blank");
+    }
+
+    function addToCart(id) {
+      const product = PRODUCTS.find(p => p.id === id);
+      if (!product) return;
+
+      const qty = quantities[id] || 1;
+      const acc = (accounts[id] || "").trim();
+
+      const existing = cart.find(item => item.id === id && item.account === acc);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          qty: qty,
+          account: acc
+        });
+      }
+
+      updateCartBadge();
+      showToast(`تمت إضافة "${product.name}" (${qty}) للسلة`);
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartBadge();
+      renderCart();
+    }
+
+    function updateCartBadge() {
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("cartCount").textContent = totalItems;
+    }
+
+    function checkoutCartWhatsApp() {
+      if (cart.length === 0) return;
+
+      let msg = `مرحباً متجر *Felix* 👋
+`;
+      msg += `أرغب بطلب المنتجات التالية من السلة:
+
+`;
+
+      let grandTotal = 0;
+      cart.forEach((item, idx) => {
+        const sub = item.price * item.qty;
+        grandTotal += sub;
+        msg += `${idx + 1}. *${item.name}*
+`;
+        msg += `   - الكمية: ${item.qty}
+`;
+        msg += `   - المجموع: $${sub.toFixed(2)}
+`;
+        if (item.account) {
+          msg += `   - المعرّف / المحفظة: ${item.account}
+`;
+        }
+      });
+
+      msg += `
+💰 *الإجمالي الكلي:* $${grandTotal.toFixed(2)}
+`;
+      msg += `بانتظار تأكيد الطلب 🙏`;
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+      window.open(url, "_blank");
+    }
+
+    function renderCart() {
+      const container = document.getElementById("cartItemsContainer");
+      const footer = document.getElementById("cartFooter");
+
+      if (cart.length === 0) {
+        container.innerHTML = `<p style="text-align:center; color:#94a3b8; padding:1.5rem 0;">السلة فارغة حالياً.</p>`;
+        footer.innerHTML = "";
+        return;
+      }
+
+      let grandTotal = 0;
+      container.innerHTML = cart.map((item, idx) => {
+        const sub = item.price * item.qty;
+        grandTotal += sub;
+        return `
+          <div class="cart-item">
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>الكمية: <strong style="color:#00f0ff;">${item.qty}</strong> • السعر: <strong style="color:#25d366;">$${sub.toFixed(2)}</strong></p>
+              ${item.account ? `<p>المعرّف: ${item.account}</p>` : ""}
+            </div>
+            <button class="remove-item" onclick="removeFromCart(${idx})">حذف</button>
+          </div>
+        `;
+      }).join("");
+
+      footer.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.9rem;">
+          <span style="color:#94a3b8; font-weight:700;">الإجمالي النهائي:</span>
+          <strong style="color:#25d366; font-size:1.2rem;">$${grandTotal.toFixed(2)}</strong>
+        </div>
+        <button class="btn-wa" style="width:100%;" onclick="checkoutCartWhatsApp()">
+          💬 إرسال كامل الطلب إلى واتساب
+        </button>
+      `;
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById("productsGrid");
+      const search = document.getElementById("searchInput").value.trim().toLowerCase();
+
+      const filtered = PRODUCTS.filter(p => {
+        const matchCat = currentCategory === "all" || p.category === currentCategory;
+        const matchSearch = p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search);
+        return matchCat && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:#94a3b8; padding:2rem;">لا توجد منتجات مطابقة لبحثك.</p>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const qty = quantities[p.id] || 1;
+        const total = (p.price * qty).toFixed(2);
+        const acc = accounts[p.id] || "";
+
+        return `
+          <article class="card">
+            <div>
+              <div class="card-header">
+                <div class="product-icon" style="background:${p.iconBg};">${p.icon}</div>
+                <span class="cat-tag ${p.category}">${p.catLabel}</span>
+              </div>
+              <h3 class="card-title">${p.name}</h3>
+              <p class="card-desc">${p.desc}</p>
+            </div>
+
+            <div>
+              <div class="price-row">
+                <span class="unit-price">السعر: <strong>$${p.price.toFixed(2)}</strong></span>
+                <span class="total-price">الإجمالي: <span id="total-${p.id}">$${total}</span></span>
+              </div>
+
+              <div class="qty-row">
+                <span class="qty-label">الكمية المطلوبة:</span>
+                <div class="qty-box">
+                  <button class="qty-btn" onclick="updateQty('${p.id}', -1)" aria-label="إنقاص">−</button>
+                  <input class="qty-input" id="qty-${p.id}" type="number" min="1" value="${qty}" oninput="setQtyDirect('${p.id}', this.value)" />
+                  <button class="qty-btn" onclick="updateQty('${p.id}', 1)" aria-label="زيادة">+</button>
+                </div>
+              </div>
+
+              <input
+                class="account-input"
+                type="text"
+                value="${acc}"
+                placeholder="${p.placeholder}"
+                oninput="setAccount('${p.id}', this.value)"
+              />
+
+              <div class="card-actions">
+                <button class="btn-wa" onclick="orderSingleWhatsApp('${p.id}')">
+                  💬 اطلب عبر واتساب
+                </button>
+                <button class="btn-add-cart" onclick="addToCart('${p.id}')" title="أضف للسلة">
+                  + سلة
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function openModal(id) {
+      if (id === "cartModal") renderCart();
+      document.getElementById(id).classList.add("open");
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("open");
+    }
+
+    function backdropClose(e, id) {
+      if (e.target.id === id) closeModal(id);
+    }
+
+    function copyTermuxCmd() {
+      const text = document.getElementById("termuxCommands").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("تم نسخ أوامر Termux بنجاح!");
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+
+    // التشغيل الأولي
+    renderProducts();
+  </script>
+</body>
+</html>
